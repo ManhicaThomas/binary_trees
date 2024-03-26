@@ -1,6 +1,6 @@
 #include "binary_trees.h"
 
-levelorder_queue_t *create_nide(bianry_tree_t *node);
+levelorder_queue_t *create_node(binary_tree_t *node);
 void free_queue(levelorder_queue_t *head);
 void pint_push(binary_tree_t *node, levelorder_queue_t *head,
 		levelorder_queue_t **tail, void (*func)(int));
@@ -51,14 +51,14 @@ void free_queue(levelorder_queue_t *head)
  * Description: Upon malloc failure, exits with a status code of 1.
  */
 void pint_push(binary_tree_t *node, levelorder_queue_t *head,
-		levelorder_queue_t **tail, void (*func)int))
+		levelorder_queue_t **tail, void (*func) (int))
 {
 	levelorder_queue_t *new;
 
 	func(node->n);
 	if (node->left != NULL)
 	{
-		new = creat_node(node->left);
+		new = create_node(node->left);
 		if (new == NULL)
 		{
 			free_queue(head);
@@ -72,7 +72,7 @@ void pint_push(binary_tree_t *node, levelorder_queue_t *head,
 		new = create_node(node->right);
 		if (new == NULL)
 		{
-			fre_queue(head);
+			free_queue(head);
 			exit(1);
 		}
 		(*tail)->next = new;
@@ -104,7 +104,7 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func) (int))
 	if (tree == NULL || func == NULL)
 		return;
 
-	head = tail = creat_node((binary_tree_t *)tree);
+	head = tail = create_node((binary_tree_t *)tree);
 	if (head == NULL)
 		return;
 
