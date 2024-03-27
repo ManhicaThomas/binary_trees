@@ -48,7 +48,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	if (size == 0)
 		return (NULL);
 	middle = (size / 2);
-	middle = (size % 2 == 0)? middle - 1 : middle;
+	middle = (size % 2 == 0) ? middle - 1 : middle;
 	root = binary_tree_node(root, array[middle]);
 	create_tree(&root, array, middle, 1);
 	create_tree(&root, array + middle + 1, (size - 1 - middle), 2);
